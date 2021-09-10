@@ -54,5 +54,11 @@ module.exports = {
   plugins:[
     '~/plugins/request.js',
     '~/plugins/dayjs.js'
-  ]
+  ],
+  server:{
+    // 默认localhost 只能本机访问
+    // 0.0.0.0会监听所有网卡地址，对外提供访问，通过外网地址可以访问到
+    host:'0.0.0.0',
+    port:3000
+  }
 }
