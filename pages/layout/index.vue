@@ -12,7 +12,7 @@
           </li>
 
           <template v-if="user">
-            <!-- 编辑 -->
+            <!-- 编辑  -->
             <li class="nav-item">
               <!-- <a class="nav-link" href="">
                 <i class="ion-compose"></i>&nbsp;New Post
