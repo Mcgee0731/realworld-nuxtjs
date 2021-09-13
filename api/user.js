@@ -16,3 +16,18 @@ export const register = data => {
     data
   })
 }
+
+
+export const followUser = username => {
+  return request({
+    method: 'POST',
+    url: `/api/profiles/${username}/follow`
+  })
+}
+
+export const unfollowUser = username => {
+  return request({
+    method: 'DELETE',
+    url: `/api/profiles/${username}/follow`
+  })
+}

@@ -5,7 +5,7 @@
       <div class="container">
 
         <h1>{{article.title}}</h1>
-
+        <!-- 个人信息条 -->
         <article-meta :article="article" />
 
       </div>

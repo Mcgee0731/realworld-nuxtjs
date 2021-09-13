@@ -53,7 +53,7 @@ export const getComments = slug=>{
 }
 
 
-// 文章自评
+// 文章评论
 export const addComments = (slug,data)=>{
   return request({
     method:'POST',

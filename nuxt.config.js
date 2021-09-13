@@ -28,21 +28,21 @@ module.exports = {
               component:resolve(__dirname,'pages/login/')
             },
             {
-              path:'/profile/:username',
+              path:'/profile/:username', // 用户喜欢文章页
               name:'profile',
               component:resolve(__dirname,'pages/profile/')
             },
             {
-              path:'/settings',
+              path:'/settings', // 设置
               component:resolve(__dirname,'pages/setting/')
             },
             {
-              path:'/editor',
+              path:'/editor', // new post 新建文章
               component:resolve(__dirname,'pages/editor/')
             },
             {
               path:'/article/:slug',
-              name:'article',
+              name:'article', // 文章详情页
               component:resolve(__dirname,'pages/article/')
             }
           ]

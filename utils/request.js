@@ -1,9 +1,12 @@
+
+// 废弃了移植到 plugins/request.js
+
 import axios from 'axios'
 
 const request = axios.create({
   // 替换备选接口
-  // baseURL:'https://conduit.productionready.io'
-  baseURL:'http://realworld.api.fed.lagounews.com/'
+  // baseURL:'https://conduit.productionready.io/'
+  // baseURL:'http://realworld.api.fed.lagounews.com/'
 })
 
 // 请求拦截器 (纯客户端方式在此请求)

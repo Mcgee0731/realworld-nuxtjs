@@ -10,8 +10,9 @@
 
     <div class="container page">
       <div class="row">
-
+        <!-- 左侧区域 -->
         <div class="col-md-9">
+          <!-- 三个列表 tab -->
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
               <li v-if="user" class="nav-item">
@@ -25,6 +26,8 @@
               </li>
             </ul>
           </div>
+
+          <!-- 单个列表项数据和单项数据 -->
           <div v-for="article in articles" :key="article.slug" class="article-preview">
             <div class="article-meta">
               <!-- <a href="profile.html"><img src="http://i.imgur.com/Qr71crq.jpg" /></a> -->
@@ -33,7 +36,7 @@
               </nuxt-link>
               <div class="info">
                 <!-- <a href="" class="author">Eric Simons</a> -->
-                <nuxt-link to="" class="author">
+                <nuxt-link :to="{name:'profile',params:{username:article.author.username}}" class="author">
                   {{article.author.username}}
                 </nuxt-link>  
                 <!-- 推荐一个 处理日期的轻量 包 dayjs -->
@@ -47,9 +50,13 @@
               <h1>{{article.title}}</h1>
               <p>{{article.description}}</p>
               <span>Read more...</span>
+              <ul class="tag-list">
+                <li v-for="item in tags" :key="item" class="tag-pill tag-default tag-outline">{{item}}</li>
+              </ul>
             </nuxt-link>
           </div>
-
+          
+          <!-- 分页功能 -->
           <nav>
             <ul class="pagination">
               <li v-for="page in totalPage" :key="page" class="page-item" :class="{active:page === pageIdx}">
@@ -61,10 +68,11 @@
               </li>
             </ul>
           </nav>
-
         </div>
 
+        <!-- 右侧区域 -->
         <div class="col-md-3">
+          <!-- tag 标签 -->
           <div class="sidebar">
             <p>Popular Tags</p>
 
@@ -116,7 +124,18 @@ export default {
     ])
     
     const { articles, articlesCount } =  articleRes.data
-    const { tags } = tagRes.data
+    const _tags = tagRes.data.tags
+
+    // debug： tags more，get 15 counts 
+    let tags=[],idx=0;
+    while(true){
+      let _rendomStr = _tags[Math.floor(Math.random() *  _tags.length)]
+      if(!tags.includes(_rendomStr)){
+        tags.push(_rendomStr)
+        idx++
+      }
+      if(idx=== 15) break;
+    }
 
     // 增加属性，对点赞按钮实现禁用
     articles.forEach(article=>article.favoriteDisabled = false)

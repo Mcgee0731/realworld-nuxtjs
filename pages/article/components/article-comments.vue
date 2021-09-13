@@ -56,13 +56,14 @@ export default {
   },
   methods:{
     async onComment(){
-
-      const {data} = await addComments(this.$route.params.slug,{
+      const {data} = await addComments(this.article.slug,{
         comment:{
           body:this.textVal
         }
       })
-      console.log(data)
+      // console.log(data)
+      this.comments.push(data.comment)
+      this.textVal = ""
     }
   }
 }
