@@ -6,7 +6,7 @@
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">Your Settings</h1>
 
-          <form>
+          <form @submit.prevent="update">
             <fieldset>
                 <fieldset class="form-group">
                   <input class="form-control" type="text" placeholder="URL of profile picture" v-model="image_">
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {getUser} from '@/api/user'
+import {getUser,updateUser} from '@/api/user'
 export default {
   name:"SettingIndex",
   middleware:'userlogin',
@@ -55,6 +55,22 @@ export default {
       bio_:'',
       email_:'',
       password_:''
+    }
+  },
+  methods:{
+    async update(){
+      const {data} = await updateUser({
+        user:{
+          email:this.email_,
+          bio:this.bio_,
+          image:this.image_
+        }
+      })
+      const {user} = data
+      this.image_ = user.image
+      this.username_ = user.username
+      this.email_ = user.email
+      this.password_ = user.password
     }
   }
 }
