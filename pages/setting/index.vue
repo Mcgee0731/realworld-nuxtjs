@@ -9,19 +9,19 @@
           <form>
             <fieldset>
                 <fieldset class="form-group">
-                  <input class="form-control" type="text" placeholder="URL of profile picture">
+                  <input class="form-control" type="text" placeholder="URL of profile picture" v-model="image_">
                 </fieldset>
                 <fieldset class="form-group">
-                  <input class="form-control form-control-lg" type="text" placeholder="Your Name">
+                  <input class="form-control form-control-lg" type="text" placeholder="Your Name" v-model="username_">
                 </fieldset>
                 <fieldset class="form-group">
-                  <textarea class="form-control form-control-lg" rows="8" placeholder="Short bio about you"></textarea>
+                  <textarea class="form-control form-control-lg" rows="8" placeholder="Short bio about you" v-model="bio_"></textarea>
                 </fieldset>
                 <fieldset class="form-group">
-                  <input class="form-control form-control-lg" type="text" placeholder="Email">
+                  <input class="form-control form-control-lg" type="email" placeholder="Email" v-model="email_">
                 </fieldset>
                 <fieldset class="form-group">
-                  <input class="form-control form-control-lg" type="password" placeholder="Password">
+                  <input class="form-control form-control-lg" type="password" placeholder="Password" v-model="password_">
                 </fieldset>
                 <button class="btn btn-lg btn-primary pull-xs-right">
                   Update Settings
@@ -36,9 +36,27 @@
 </template>
 
 <script>
+import {getUser} from '@/api/user'
 export default {
   name:"SettingIndex",
-  middleware:'userlogin'
+  middleware:'userlogin',
+  async created(){
+    const {data} = await getUser()
+    const {user} = data
+    this.image_ = user.image
+    this.username_ = user.username
+    this.email_ = user.email
+    this.password_ = user.password
+  },
+  data(){
+    return {
+      image_:'',
+      username_:'',
+      bio_:'',
+      email_:'',
+      password_:''
+    }
+  }
 }
 </script>
 
