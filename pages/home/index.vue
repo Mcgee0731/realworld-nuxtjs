@@ -126,7 +126,7 @@ export default {
     const { articles, articlesCount } =  articleRes.data
     const _tags = tagRes.data.tags
 
-    // debug： tags more，get 15 counts 
+    // debug： tags more，get 15 counts  
     let tags=[],idx=0;
     while(true){
       let _rendomStr = _tags[Math.floor(Math.random() *  _tags.length)]
